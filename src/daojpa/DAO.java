@@ -21,7 +21,7 @@ public abstract class DAO<T> implements DAOInterface<T> {
 	public static void open(){
 		if(manager==null){
 			//propriedades do persistence.xml  que podem ser sobrescritas		
-			HashMap<String,String> properties = new HashMap<String,String>();		
+		//	HashMap<String,String> properties = new HashMap<String,String>();		
 			//			properties.put(PersistenceUnitProperties.JDBC_DRIVER, "org.postgresql.Driver" );	
 			//			properties.put(PersistenceUnitProperties.JDBC_URL, "jdbc:postgresql://localhost:5432/loja");
 			//			properties.put(PersistenceUnitProperties.JDBC_USER, "postgres");

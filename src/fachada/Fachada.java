@@ -67,11 +67,13 @@ public class Fachada {
 	}
      
 	public static ArrayList<Imagem> listarImagens(){
+		DAO.begin();
 		ArrayList<Imagem> result = new ArrayList<>();
 		List<Imagem> imagens = daoimagem.readAll();
 		for (Imagem img : imagens) {
 		    result.add(img);
 		}
+		DAO.commit();
 		return result;
 	}
 	
@@ -80,6 +82,7 @@ public class Fachada {
 		DAO.begin();
 		Imagem img = daoimagem.readByNome(nome);
 		if (img==null) {
+			
 			throw new Exception("imagem inexistente");
 		}	
 		daoimagem.delete(img);
@@ -88,8 +91,10 @@ public class Fachada {
 
 	public static Usuario validaLogin(String user, String senha) throws Exception{
 		Usuario usuario = daousuario.login(user,senha);
-		if(usuario==null) 
+		if(usuario==null) { 
+			
 			throw new Exception("Login ou senha incorretos!");
+		}
 		 else {
 			 logado = usuario;
 			 return usuario;
@@ -125,21 +130,23 @@ public class Fachada {
 	}
 	
 	public static List<Usuario> listarUsuarios(){
+		DAO.begin();
 		List<Usuario> users = daousuario.readAll();
 		return users;
 	}
 	
 	public static List<Tema> listarTemas(){
-		List<Tema> tema = daotema.readAll();
-		return tema;
+		DAO.begin();
+		List<Tema> temas = daotema.readAll();
+		return temas;
 	}
 	
 	public static void alterarNomeUsuario(String nome, String novonome) throws Exception{
-		Fachada.inicializar();
 		DAO.begin();		
 		Usuario user = daousuario.readByNome(nome);	
-		if (user==null)
+		if (user==null) {
 			throw new Exception("alterar nome - nome inexistente:" + nome);
+		}
 		user.setNome(novonome); 
 		Fachada.setLogado(user);
 		user = daousuario.update(user); 
@@ -147,12 +154,11 @@ public class Fachada {
 	}
 	
 	public static void alteraLogin(String nome, String new_login) throws Exception{
-		Fachada.inicializar();
 		DAO.begin();		
 		Usuario user = daousuario.readByNome(nome);	
-		if (user==null)
+		if (user==null) {
 			throw new Exception("Alterar login - nome inexistente:" + nome);
-
+		}
 		user.setLogin(new_login);
 		Fachada.setLogado(user);
 		user = daousuario.update(user);     	
@@ -160,8 +166,8 @@ public class Fachada {
 		
 	}
 	
+	
 	public static void inserirTema(String nome,String new_tema) {
-		Fachada.inicializar();
 		DAO.begin();
 		Usuario user = daousuario.readByNome(nome);
 		Tema  tema = daotema.readByNome(new_tema);
@@ -175,6 +181,8 @@ public class Fachada {
 		}
 	 }
 	
+	
+	
 	/**********************************************************
 	 * 
 	 * CONSULTAS 
@@ -183,16 +191,16 @@ public class Fachada {
 	 **********************************************************/
 	
 	public static List<Imagem> imagensPorTema(String tema) throws Exception {
-		DAO.begin();
-		List<Imagem> result = new ArrayList<>();
-		result = daoimagem.ConsultarImagensPorTema(tema);
+		List<Imagem> l = daoimagem.ConsultarImagensPorTema(tema);
 		
-		if(result == null)
+		if(l == null) {
 			throw new Exception("nenhuma imagem para esse tema");
-		return result;
+		}
+		return l;
 	}
 	
 	public static int qtdFormatoImagem(String formato) {
+		DAO.begin();
 		int qtd = 0;
 		 List<Imagem> imagens = daoimagem.readAll();
 		 for(Imagem i: imagens) {
@@ -222,9 +230,11 @@ public class Fachada {
 		
 
 		public static ArrayList<String> temaImagensDoUsuario(String usuario,String tema)throws Exception {
+			DAO.begin();
 			Usuario user = daousuario.readByNome(usuario);
-			if(user == null)
+			if(user == null) {
 				throw new Exception("Usuario inexistente");
+			}
 			List<Tema> temas = daotema.temaImagensDoUsuario(tema);
 			if(temas == null)
 				throw new Exception("Tema inexistente!");

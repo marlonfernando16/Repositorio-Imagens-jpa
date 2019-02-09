@@ -9,6 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -60,6 +61,7 @@ public class TelaImportExport {
 	 * Create the application.
 	 */
 	public TelaImportExport() {
+		Fachada.inicializar();
 		initialize();
 	}
 
@@ -67,7 +69,6 @@ public class TelaImportExport {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		Fachada.inicializar();
 		frmPrincipal = new JFrame();
 		frmPrincipal.setTitle("Gravar e ler imagens do banco");
 		frmPrincipal.setBounds(100, 100, 605, 298);
@@ -115,6 +116,7 @@ public class TelaImportExport {
 					lbl1.setIcon(icon);
 
 				}catch(Exception e){
+					e.printStackTrace();
 					lblmensagem.setText(e.getMessage());
 				}
 			}
@@ -193,16 +195,25 @@ public class TelaImportExport {
 		frmPrincipal.getContentPane().add(lblmensagem);
 		
 		JComboBox cb_tema = new JComboBox();
-		cb_tema.setModel(new DefaultComboBoxModel(new String[] {"Paisagem", "Pessoal", "Aleatorio", "Animais", "Memes", "Todos"}));
+		String[] temas = {"Todos", "Paisagem", "Pessoal", "Aleatorio", "Animais", "Memes"};
+		cb_tema.setModel(new DefaultComboBoxModel(temas));
 		cb_tema.setBounds(125, 66, 101, 20);
 		frmPrincipal.getContentPane().add(cb_tema);
 		
 		cb_tema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String tema = cb_tema.getSelectedItem().toString();
-				if(!lblmensagem.getText().equals(""))
 					Fachada.inserirTema(Fachada.getLogado().getNome(),tema);
+				    System.out.println(Fachada.getLogado());
+//				try {
+//					ArrayList<String> temasUser = Fachada.temaImagensDoUsuario("m",tema);
+//				} catch (Exception e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
 				}
+			
+//			System.out.println(temasUser);
 		});
 		
 		
@@ -215,6 +226,17 @@ public class TelaImportExport {
 		JLabel label_2 = new JLabel("");
 		label_2.setBounds(512, 225, 49, 23);
 		frmPrincipal.getContentPane().add(label_2);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				TelaPrincipal tela = new TelaPrincipal();
+				frmPrincipal.dispose();
+				tela.Principal();
+			}
+		});
+		btnVoltar.setBounds(357, 225, 89, 23);
+		frmPrincipal.getContentPane().add(btnVoltar);
 		//Fachada.finalizar();
 	}
 }

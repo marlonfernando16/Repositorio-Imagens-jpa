@@ -101,7 +101,6 @@ public class TelaLogin {
 						TelaPrincipal tela = new TelaPrincipal();
 						frame.dispose();
 						tela.Principal();
-						Fachada.finalizar();
 					} 		
 				} catch (Exception e) {
 					lb_invalido.setText(e.getMessage());

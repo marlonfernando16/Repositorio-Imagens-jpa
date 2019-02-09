@@ -29,6 +29,9 @@ public class Tema {
 	public void setImagem(Imagem imagem) {
 		this.imagensTema.add(imagem);
 	}
+	
+	public Tema() {};
+	
 	@Override
 	public String toString() {
 		String texto =  "Tema [tema=" + tema + ", imagens= ";

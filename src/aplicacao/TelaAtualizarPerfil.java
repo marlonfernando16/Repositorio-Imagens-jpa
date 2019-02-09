@@ -12,9 +12,11 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class TelaAtualizarPerfil {
-
+	
 	private JFrame frame;
 	private JTextField tf_nome;
 	private JTextField tf_login;
@@ -46,8 +48,17 @@ public class TelaAtualizarPerfil {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		Fachada.inicializar();
 		frame = new JFrame();
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				Fachada.inicializar();
+			}
+			@Override
+			public void windowClosed(WindowEvent e) {
+				Fachada.finalizar();
+			}
+		});
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -99,6 +110,10 @@ public class TelaAtualizarPerfil {
 		tf_login.setBounds(249, 123, 175, 20);
 		frame.getContentPane().add(tf_login);
 		tf_login.setColumns(10);
+		
+		JLabel lbl_atualizado_sucesso = new JLabel("");
+		lbl_atualizado_sucesso.setBounds(30, 209, 162, 14);
+		frame.getContentPane().add(lbl_atualizado_sucesso);
 
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
@@ -107,12 +122,17 @@ public class TelaAtualizarPerfil {
 					String new_nome = tf_nome.getText();
 					String new_login = tf_login.getText();
 					String nome = Fachada.getLogado().getNome();
-					System.out.println(new_nome.length());
 				if(!new_nome.equals(""))
 					Fachada.alterarNomeUsuario(nome, new_nome);
 				if(!new_login.equals(""))
 					Fachada.alteraLogin(new_nome, new_login);
+				
+				lbl_atualizado_sucesso.setText("Atualizado com Sucesso!");
+				
 				}
+			 	
+			
+			
 					 catch (Exception e) {
 						// TODO Auto-generated catch block
 						System.out.println(e.getMessage());
@@ -127,6 +147,11 @@ public class TelaAtualizarPerfil {
 		lb_user_nome.setText(Fachada.getLogado().getNome());
 		lb_user_login.setText(Fachada.getLogado().getLogin());
 		
-		Fachada.finalizar();
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(67, 209, 46, 14);
+		frame.getContentPane().add(lblNewLabel);
+		
+		
+		
 	}
 }

@@ -15,14 +15,14 @@ public class teste {
 
 		System.out.println("\n cadastrando,listando cada tema,e listando todos os temas cadastrados! \n");
 
-		     		Tema tema1 = Fachada.cadastrarTema("Paisagem");
-		    		Tema tema2 = Fachada.cadastrarTema("Aleatorio");
+//		     		Tema tema1 = Fachada.cadastrarTema("Paisagem");
+//		    		Tema tema2 = Fachada.cadastrarTema("Aleatorio");
+//		     		
+//		     		System.out.println(tema1);
+//		     		System.out.println(tema2);
 		     		
-		     		System.out.println(tema1);
-		     		System.out.println(tema2);
-		     		
-		    		List<Tema> temas = Fachada.listarTemas();
-		    		System.out.println(temas);
+//		    		List<Tema> temas = Fachada.listarTemas();
+//		    		System.out.println(temas);
 
 		//System.out.println(" \n cadastrando e printando os usuarios");
 
@@ -30,10 +30,10 @@ public class teste {
 			        Usuario user2 = Fachada.cadastrarUsuario("marlon", "mfive", "mfive");
 			        System.out.println(user);
 				    System.out.println(user2);
-
-		System.out.println(" \n listando usuarios \n");
-		List<Usuario> users = Fachada.listarUsuarios();
-		System.out.println(users);
+//
+//		System.out.println(" \n listando usuarios \n");
+//		List<Usuario> users = Fachada.listarUsuarios();
+//		System.out.println(users);
 
 		//			System.out.println("apagando imagem");
 		////			try {

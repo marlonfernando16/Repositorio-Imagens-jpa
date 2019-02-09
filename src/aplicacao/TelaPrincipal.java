@@ -71,6 +71,7 @@ public class TelaPrincipal {
 		JButton btnNewButton = new JButton("Sair");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
 			}
 		});
 		btnNewButton.setBounds(142, 162, 137, 20);
