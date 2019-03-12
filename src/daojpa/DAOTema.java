@@ -27,7 +27,7 @@ public class DAOTema extends DAO<Tema> {
 
 	try {
 		Query q = manager.createQuery("select t from Tema t where t.tema= '" + tema + "'");
-		return (List<Tema>) q.getSingleResult();
+		return q.getResultList();
 	} catch (Exception e) {
 		return null;
 	}

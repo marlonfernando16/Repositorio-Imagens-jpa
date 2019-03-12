@@ -151,6 +151,17 @@ public class TelaAtualizarPerfil {
 		lblNewLabel.setBounds(67, 209, 46, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				TelaPrincipal tela = new TelaPrincipal();
+				frame.dispose();
+				tela.Principal();
+			}
+		});
+		btnVoltar.setBounds(121, 173, 89, 23);
+		frame.getContentPane().add(btnVoltar);
+		
 		
 		
 	}

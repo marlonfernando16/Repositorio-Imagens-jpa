@@ -199,16 +199,10 @@ public class Fachada {
 		return l;
 	}
 	
-	public static int qtdFormatoImagem(String formato) {
+	public static int qtdImagensTema(String tema) {
 		DAO.begin();
-		int qtd = 0;
-		 List<Imagem> imagens = daoimagem.readAll();
-		 for(Imagem i: imagens) {
-			 if(i.getNome().contains(formato))
-				 qtd++;
-		 }
-		 
-		return qtd;
+		 List<Imagem> imagens = daoimagem.ConsultarImagensPorTema(tema); 
+		return imagens.size();
 		
 		
 	}

@@ -200,11 +200,14 @@ public class TelaImportExport {
 		cb_tema.setBounds(125, 66, 101, 20);
 		frmPrincipal.getContentPane().add(cb_tema);
 		
+		for(String tema:temas) {
+			Fachada.cadastrarTema(tema);
+		}
+		System.out.println(cb_tema.getSelectedItem().toString());
 		cb_tema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String tema = cb_tema.getSelectedItem().toString();
-					Fachada.inserirTema(Fachada.getLogado().getNome(),tema);
-				    System.out.println(Fachada.getLogado());
+					Fachada.inserirTema(Fachada.getLogado().getNome(),cb_tema.getSelectedItem().toString());
 //				try {
 //					ArrayList<String> temasUser = Fachada.temaImagensDoUsuario("m",tema);
 //				} catch (Exception e1) {

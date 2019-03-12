@@ -12,8 +12,8 @@ public class teste {
 	public static void main(String[] args)  {
 
 		Fachada.inicializar();
-
-		System.out.println("\n cadastrando,listando cada tema,e listando todos os temas cadastrados! \n");
+//		System.out.println(Fachada.listarImagens());
+		//		System.out.println("\n cadastrando,listando cada tema,e listando todos os temas cadastrados! \n");
 
 //		     		Tema tema1 = Fachada.cadastrarTema("Paisagem");
 //		    		Tema tema2 = Fachada.cadastrarTema("Aleatorio");
@@ -28,9 +28,9 @@ public class teste {
 
 					Usuario user = Fachada.cadastrarUsuario("tales1", "talesman", "megaranto");
 			        Usuario user2 = Fachada.cadastrarUsuario("marlon", "mfive", "mfive");
-			        System.out.println(user);
-				    System.out.println(user2);
-//
+//			        System.out.println(user);
+//				    System.out.println(user2);
+////
 //		System.out.println(" \n listando usuarios \n");
 //		List<Usuario> users = Fachada.listarUsuarios();
 //		System.out.println(users);
@@ -68,8 +68,8 @@ public class teste {
 //		}
 ////
 ////		
-//		System.out.println("exibindo a quantidade de  imagens com a extensão jpeg \n");		
-//		int qtd = Fachada.qtdFormatoImagem("jpg");
+//		System.out.println("exibindo a quantidade de  imagens com a extensão daquele tema \n");		
+//		int qtd = Fachada.qtdFormatoImagem("Aleatorio");
 //		System.out.println(qtd);
 //		
 //
@@ -85,6 +85,7 @@ public class teste {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		
 		Fachada.finalizar();		
 
 	}

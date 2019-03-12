@@ -51,6 +51,7 @@ public class Imagem /*implements IDInterface */ {
 	}
 
 	public Tema getTema() {
+		System.out.println(tema.getTema()+ " uno");
 		return tema;
 	}
 
